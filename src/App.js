@@ -33,8 +33,8 @@ export class App extends Component {
       "http://localhost:3000/qless/authenticator",
       qs.stringify({
         remeber: "true",
-        principal: "college",
-        credentails: "demo"
+        principal: "x",
+        credentails: "x"
       })
     );
 
