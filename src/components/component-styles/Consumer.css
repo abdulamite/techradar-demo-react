@@ -1,0 +1,19 @@
+.consumer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1rem;
+    background-color: red;
+}
+
+li{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: .5rem 1em .5rem 1rem;
+    background: #fafafa;
+}
+
+li:nth-child(even){
+    background: #00000014;
+}

@@ -1,0 +1,29 @@
+.queue{
+    height: 100%;
+    margin: 1rem;
+    width:500px;
+    background-color: #4f66ee;
+    border-radius: 2rem 2rem 1rem 1rem;
+    overflow: hidden;
+    box-shadow: 6px 5px 7px #00000075;
+}
+
+.queue-header{
+    background-color: #FAFAFA;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 2rem;
+    width: 80%;
+    margin: auto;
+    margin-top: 1rem;
+    box-shadow: -2px 8px 5px #00000045;
+}
+
+.consumer-list{
+    margin-top: 1rem;
+    background: white;
+}
+
+h3{
+    margin:0;
+}

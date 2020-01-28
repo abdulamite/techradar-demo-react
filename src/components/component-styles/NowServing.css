@@ -1,0 +1,16 @@
+h2{
+    margin:0;
+    text-align: center;
+}
+
+.summoned{
+    background-color: #ffcc00;
+    padding: .5rem;
+}
+.summoned-consumers-list{
+    display: flex;
+}
+
+.summoned-consumers-list>* {
+    margin: 1rem;
+}
