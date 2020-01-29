@@ -1,7 +1,5 @@
 .queue{
-    height: 100%;
-    margin: 1rem;
-    width:500px;
+    height: 43%;
     background-color: #4f66ee;
     border-radius: 2rem 2rem 1rem 1rem;
     overflow: hidden;

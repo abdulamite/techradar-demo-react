@@ -12,7 +12,6 @@ export class App extends Component {
     user: {},
     wssid: "",
     queues: [],
-    summoned: [],
     nowServing: {}
   };
 
@@ -67,7 +66,6 @@ export class App extends Component {
         )}/tickets/outstanding`
       )
       .then(res => {
-        let summoned = this.state.summoned;
         let nowServing = this.state.nowServing;
         const xml = res.data;
         const spots = processData(xml).queueSpots.spot;
@@ -77,17 +75,10 @@ export class App extends Component {
             if (!(spot.ticketClassifier[0].description[0] in stations)) {
               stations[spot.ticketClassifier[0].description[0]] = [];
             }
-
             stations[spot.ticketClassifier[0].description[0]].push(spot);
-
-            let currentSpot = { ...spot.$ };
-            currentSpot.ticketClassifier =
-              spot.ticketClassifier[0].description[0];
-            summoned.push(currentSpot);
           });
         }
         this.setState({ nowServing: stations });
-        this.setState({ summoned });
       })
       .catch(err => {
         console.log(err);
@@ -113,10 +104,7 @@ export class App extends Component {
     return (
       <div className="App">
         <Header locationDescription={this.state.merchantLocation.description} />
-        <NowServing
-          summoned={this.state.summoned}
-          nowServing={this.state.nowServing}
-        />
+        <NowServing nowServing={this.state.nowServing} />
         <div className="queue-continaer">
           {this.state.queues.map((queue, index) => (
             <Queue key={queue.id} details={this.state.queues[index]} />

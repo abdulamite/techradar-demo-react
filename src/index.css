@@ -20,10 +20,9 @@ body {
 }
 
 .queue-continaer {
-    margin: 1rem;
-    flex-direction: row;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding-bottom:2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-gap: 30px;
+  padding: 1rem;
+  max-height: 70%;
 }
