@@ -16,26 +16,12 @@ export class App extends Component {
   };
 
   componentDidMount = async () => {
-    // let data = await createLongPollRequest(
-    //   `http://localhost:3000/qless/event/v1/employee?id=${Date.now()}`
-    // );
-    // console.log(data);
     // Get this wssid
     axios.get("http://localhost:3000/qless/api/v1/wssid").then(res => {
       let wssid = this.state.wssid;
       wssid = processData(res.data).wssid;
       this.setState({ wssid });
     });
-
-    // Lets get logged in!
-    await axios.post(
-      "http://localhost:3000/qless/authenticator",
-      qs.stringify({
-        remeber: "true",
-        principal: "x",
-        credentails: "x"
-      })
-    );
 
     await axios
       .get("http://localhost:3000/qless/api/v1/employee/queues")
@@ -66,19 +52,18 @@ export class App extends Component {
         )}/tickets/outstanding`
       )
       .then(res => {
-        let nowServing = this.state.nowServing;
+        let nowServing = { ...this.state.nowServing };
         const xml = res.data;
         const spots = processData(xml).queueSpots.spot;
-        let stations = {};
         if (spots) {
           spots.forEach(spot => {
-            if (!(spot.ticketClassifier[0].description[0] in stations)) {
-              stations[spot.ticketClassifier[0].description[0]] = [];
+            if (!(spot.ticketClassifier[0].description[0] in nowServing)) {
+              nowServing[spot.ticketClassifier[0].description[0]] = [];
             }
-            stations[spot.ticketClassifier[0].description[0]].push(spot);
+            nowServing[spot.ticketClassifier[0].description[0]].push(spot);
           });
         }
-        this.setState({ nowServing: stations });
+        this.setState({ nowServing });
       })
       .catch(err => {
         console.log(err);

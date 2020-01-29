@@ -25,7 +25,7 @@ function createLongPollRequest(endpoint) {
     console.log("process");
     console.log(longPollRequest.response);
     console.log(longPollRequest);
-    // fn(eventParse(longPollRequest.response));
+    processData(longPollRequest.response);
   };
   const handleProgress = () => {
     console.log("longPollRequest", longPollRequest.response);
@@ -34,7 +34,7 @@ function createLongPollRequest(endpoint) {
   };
   longPollRequest.onreadystatechange = handleStateChange;
   longPollRequest.addEventListener("progress", handleProgress);
-  longPollRequest.send();
+  longPollRequest.send("Hello");
   return longPollRequest;
 }
 

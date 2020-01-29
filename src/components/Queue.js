@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import processData from "../helpers";
+import processData, { createLongPollRequest } from "../helpers";
 import Consumer from "./Consumer";
 import "./component-styles/Queue.css";
 
@@ -9,9 +9,9 @@ export class Queue extends Component {
     consumers: []
   };
   componentDidMount = async () => {
-    // await createLongPollRequest(
-    //   `http://localhost:3000/qless/event/v1/employee?id=${Date.now()}`
-    // );
+    createLongPollRequest(
+      `http://localhost:3000/qless/event/v1/employee?id=1580278848267`
+    );
     axios
       .get(
         `http://localhost:3000/qless/api/v1/employee/queues/${this.props.details.id}/spots/waiting`
