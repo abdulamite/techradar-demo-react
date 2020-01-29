@@ -38,5 +38,21 @@ function createLongPollRequest(endpoint) {
   return longPollRequest;
 }
 
-export { createLongPollRequest };
+function updateQueues(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.responseType = "text"; //or 'text', 'json', ect. there are other types.
+  xhr.timeout = 60000; //milliseconds until timeout fires. (1 minute)
+  xhr.onload = function() {
+    console.log(xhr.response);
+    //handle response data
+  };
+  xhr.ontimeout = function() {
+    //if you get this you probably should try to make the connection again.
+    //the browser should've killed the connection.
+  };
+  xhr.open("GET", url, true);
+  xhr.send();
+}
+
+export { createLongPollRequest, updateQueues };
 export default processData;

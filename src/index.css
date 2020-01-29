@@ -24,5 +24,5 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-gap: 30px;
   padding: 1rem;
-  max-height: 70%;
+  height: 70%;
 }

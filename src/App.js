@@ -69,6 +69,29 @@ export class App extends Component {
         console.log(err);
       });
 
+    setInterval(() => {
+      axios
+        .get(
+          `http://localhost:3000/qless/api/v1/employee/queues/${queuesIds.join(
+            ","
+          )}/tickets/outstanding`
+        )
+        .then(res => {
+          let nowServing = {};
+          const xml = res.data;
+          const spots = processData(xml).queueSpots.spot;
+          if (spots) {
+            spots.forEach(spot => {
+              if (!(spot.ticketClassifier[0].description[0] in nowServing)) {
+                nowServing[spot.ticketClassifier[0].description[0]] = [];
+              }
+              nowServing[spot.ticketClassifier[0].description[0]].push(spot);
+            });
+          }
+          this.setState({ nowServing });
+        });
+    }, 3000);
+
     // Set up the merchantLocation
     let merchantLocation = this.state.merchantLocation;
     merchantLocation = await axios
